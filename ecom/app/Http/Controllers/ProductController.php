@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->paginate(2);
+        $products = Product::query()->paginate(5);
         return view('product.index',compact('products'));
     }
 
@@ -95,9 +95,7 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
-        if (file_exists(public_path($product->image))) {
-            unlink(public_path($product->image));
-        }
+
 
         // Delete the product record from the database
         $product->delete();

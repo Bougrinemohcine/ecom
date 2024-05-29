@@ -24,7 +24,7 @@
                     <th scope="row">{{$item->id}}</th>
                     <td>{{$item->name}}</td>
                     <td>{{$item->description}}</td>
-                    <td>{{$item->quantity}}</td>
+                    <td>{{!! $item->quantity !!}}</td>
                     <td>
                         <img width="100px" src="{{ asset($item->image) }}" alt="Product Image">
                     </td>
