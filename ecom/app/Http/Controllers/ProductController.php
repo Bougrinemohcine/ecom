@@ -13,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::query()->paginate(1);
+        $products = Product::query()->paginate(2);
         return view('product.index',compact('products'));
     }
 
@@ -23,7 +23,8 @@ class ProductController extends Controller
     public function create()
     {
         $products = new Product;
-        return view('product.create',compact('products'));
+        $isUpdate = false;
+        return view('product.create',compact('products','isUpdate'));
 
     }
 
@@ -59,16 +60,34 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $products = new Product;
+        $isUpdate = true;
+        return view('product.create',compact('products','isUpdate','product'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
-    {
-        //
+    public function update(ProductRequest $request, Product $product)
+{
+    $formFields = $request->validated();
+
+    // Handling image update
+    if ($request->hasFile('image')) {
+        // Delete old image if it exists
+        if (file_exists(public_path($product->image))) {
+            unlink(public_path($product->image));
+        }
+
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('product'), $imageName);
+        $formFields['image'] = 'product/' . $imageName;
     }
+
+    $product->fill($formFields)->save();
+    return redirect()->route('products.index')->with('success', 'Product updated successfully');
+}
 
     /**
      * Remove the specified resource from storage.

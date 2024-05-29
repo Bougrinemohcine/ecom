@@ -30,6 +30,7 @@
                     </td>
                     <td>{{$item->price}}</td>
                     <td>
+                        <a href="{{route('products.edit',$item->id)}}" class="btn btn-primary btn-sm">Update</a>
                         <form action="{{ route('products.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                             @csrf
                             @method('DELETE')
