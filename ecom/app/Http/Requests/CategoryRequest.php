@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ProductRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,14 +23,6 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => 'required|min:5',
-            'description' => 'required|min:5',
-            'quantity' => 'required|numeric',
-            'price' => 'required|numeric',
-            'category_id' => 'required'
         ];
-        if($this->route()->getActionMethod() === 'store') {
-            $rules['image'] = 'required|image';
-        }
-        return $rules;
     }
 }

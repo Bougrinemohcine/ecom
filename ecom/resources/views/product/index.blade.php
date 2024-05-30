@@ -23,12 +23,13 @@
                 <tr>
                     <th scope="row">{{$item->id}}</th>
                     <td>{{$item->name}}</td>
-                    <td>{{$item->description}}</td>
-                    <td>{{!! $item->quantity !!}}</td>
+                    <td>{{!! $item->description !!}}</td>
+                    <td>{{ $item->quantity }}</td>
                     <td>
                         <img width="100px" src="{{ asset($item->image) }}" alt="Product Image">
                     </td>
                     <td>{{$item->price}}</td>
+                    <td>{{$item->category}}</td>
                     <td>
                         <a href="{{route('products.edit',$item->id)}}" class="btn btn-primary btn-sm">Update</a>
                         <form action="{{ route('products.destroy', $item->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
