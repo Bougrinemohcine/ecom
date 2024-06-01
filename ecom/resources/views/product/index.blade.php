@@ -12,6 +12,7 @@
             <th scope="col">#ID</th>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Category</th>
             <th scope="col">Quantity</th>
             <th scope="col">Image</th>
             <th scope="col">Price</th>
@@ -24,6 +25,7 @@
                     <th scope="row">{{$item->id}}</th>
                     <td>{{$item->name}}</td>
                     <td>{{!! $item->description !!}}</td>
+                    <td>{{$item->category?->name}}</td>
                     <td>{{ $item->quantity }}</td>
                     <td>
                         <img width="100px" src="{{ asset($item->image) }}" alt="Product Image">
