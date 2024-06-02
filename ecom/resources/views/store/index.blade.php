@@ -15,7 +15,10 @@
                 <h5 class="card-title">{{$item->name}}</h5>
                 <p class="card-text">{{!! $item->description !!}}</p>
                 <hr>
-                Quantity : <span class="badge bg-success">{{$item->quantity}}</span>
+                Quantity : <span class="badge bg-success">{{$item->quantity}}</span><br>
+                @if ($item->category)
+                    Category : <span class="badge bg-success">{{$item->category?->name}}</span>
+                @endif
             </div>
         </div>
     @endforeach

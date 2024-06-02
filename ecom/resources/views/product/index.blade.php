@@ -25,7 +25,12 @@
                     <th scope="row">{{$item->id}}</th>
                     <td>{{$item->name}}</td>
                     <td>{{!! $item->description !!}}</td>
-                    <td>{{$item->category?->name}}</td>
+                    <td align="center">
+                        @if ($item->category)
+                            {{$item->category?->name}}</td>
+                        @else
+                            -
+                        @endif
                     <td>{{ $item->quantity }}</td>
                     <td>
                         <img width="100px" src="{{ asset($item->image) }}" alt="Product Image">
